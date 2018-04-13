@@ -1,0 +1,65 @@
+<!--The content below is only a placeholder and can be replaced.-->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top trans-bg">
+      <div class="container-fluid">
+        <a class="navbar-brand ">
+     <img src="assets/img/logo.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul id="menu" class="navbar-nav ml-auto nav">
+            <li class="nav-item">
+			<button data-toggle="tab" onClick="bgdefault()" class="nav-link bg-button" href="#home">About</button>             
+            </li>
+			 <li class="nav-item">
+			<button data-toggle="tab" onClick="changeColor()" class="nav-link bg-button" href="#menu1">Assess</button>             
+            </li>
+			 <li class="nav-item">
+			<button data-toggle="tab" onClick="changeColor_1()" class="nav-link bg-button" href="#menu2">View Report</button>             
+            </li>
+			 <li class="nav-item">
+			<button data-toggle="tab" onClick="changeColor_2()" class="nav-link bg-button" href="#menu3">Edit Rules</button>             
+       </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+     <br>
+	   <div class="tab-content">
+    <div id="home" class="tab-pane fade show active transition">
+	<div style="text-align: center;">
+	
+      <h3 style="color:white; Margin-top:120px; Margin-bottom:20px; font-size: 32px;">VSM</h3>
+      <p style="color:white; height:50px; width:600px; margin:auto;  line-height: 1.8;">An automated analyzer to determine Cloud Readiness for a portfolio of applications, identify migration problems and provide recommendations. Customers can utilize this tool to accelerate their transformation journey to save time and cost, while increasing consistency, visibility and predictability, and reducing risk</p>
+    
+	 </div>
+	 </div>
+    <div id="menu1" class="tab-pane fade tab-bg transition">
+      <h3>Assess</h3>
+      <p>Content</p>
+    </div>
+    <div id="menu2" class="tab-pane fade  tab-bg">
+      <h3>View Report</h3>
+      <p>Content</p>
+    </div>
+    <div class ="" id="menu3" class="tab-pane fade  tab-bg">
+      <div class="container">
+       <app-edit-rules></app-edit-rules>
+        <!-- <nav>
+          <a routerLink="/antiPatternRules" routerLinkActive="active" >AntiPatternRules</a>
+          <a routerLink="/antiPatternRulesMaster" routerLinkActive="active">AntiPatternMasterComponent</a>
+        </nav>
+        <div>
+          <router-outlet></router-outlet> -->
+       </div>
+    </div>
+  </div>
+	
+    </div>
+     
+   
+

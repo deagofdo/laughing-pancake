@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-width: 450px;
+    padding: 0px !important;
+  }
+  
+  .container > * {
+    width: 100%;
+  }
+  
+  .form {
+    display: flex;
+    padding-top: 6px;
+  }
+  
+  .mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+  }
+  .form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .mat-dialog-content{
+    margin:none !important;
+  }

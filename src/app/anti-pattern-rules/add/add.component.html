@@ -1,0 +1,138 @@
+<div class="container">
+  <h3 mat-dialog-title>Add New Rule</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <!-- <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div> -->
+
+    <!--Textarea for demo purposes-->
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+
+    <!-- <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RuleCategory" [(ngModel)]="data.ruleCategory" name="ruleCategory" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div> -->
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select placeholder="Language" [(ngModel)]="data.language" name="language" maxlength="100" required>
+          <mat-option *ngFor="let language of languages" [value]="language.value">
+            {{language.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+        <mat-select placeholder="Group" [(ngModel)]="data.group" name="group" maxlength="100" required>
+          <mat-option *ngFor="let group of groupData" [value]="group" (click)="getSubgroupList()">
+            <!-- (click)="getSubgroupList()" -->
+            {{group}}
+          </mat-option>
+          <!-- <option ng-repeat="group in groupData" value="{{group}}">{{group}}</option>       -->
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="SubGroup" [disabled]="enable" [(ngModel)]="data.subGroup" name="subGroup" maxlength="100" required>
+          <mat-option *ngFor="let subgroup of subGroupData" [value]="subgroup">
+            {{subgroup}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput   autocomplete="anyrandomstring" #inputstate class="form-control" placeholder="RuleType" [(ngModel)]="data.ruleType" name="ruleType" maxlength="100"
+          required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  autocomplete="anyrandomstring" #inputstate class="form-control" placeholder="Desc" [(ngModel)]="data.desc" name="desc" maxlength="100" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="EffortType" [(ngModel)]="data.effortType" name="effortType" maxlength="100" required>
+          <mat-option *ngFor="let effortType of effortTypes" [value]="effortType.value">
+            {{effortType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="RuleParserType" [(ngModel)]="data.ruleParserType" name="ruleParserType" maxlength="100" required>
+          <mat-option *ngFor="let ruleParserType of ruleParserTypes" [value]="ruleParserType.value">
+            {{ruleParserType.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="Enabled" [(ngModel)]="data.enabled" name="enabled" maxlength="100" required>
+          <mat-option *ngFor="let state of enabled" [value]="state.value">
+            {{state.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  autocomplete="anyrandomstring" #inputstate class="form-control" placeholder="FileList" [(ngModel)]="data.fileList" name="fileList" maxlength="100"
+          required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  autocomplete="anyrandomstring" #inputstate class="form-control" placeholder="RegexPreCondition" [(ngModel)]="data.regexPreCondition" name="regexPreCondition"
+          maxlength="100" >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput  autocomplete="anyrandomstring" #inputstate class="form-control" placeholder="RegexList" [(ngModel)]="data.regexList" name="regexList" maxlength="100"
+          >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

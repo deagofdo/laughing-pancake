@@ -1,0 +1,118 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Issue id: {{data.id}}</h3> -->
+<h3 mat-dialog-title>Edit Rule : {{data.id}}</h3>
+
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+     <!--Textarea for demo purposes-->
+   
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+
+<!-- 
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+  
+    
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RuleCategory" [(ngModel)]="data.ruleCategory" name="ruleCategory" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div> -->
+	
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Language" [(ngModel)]="data.language" name="language" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+	
+	<div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Group" [(ngModel)]="data.group" name="group" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+	
+	<div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="SubGroup" [(ngModel)]="data.subGroup" name="subGroup" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+	
+	<div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RuleType" [(ngModel)]="data.ruleType" name="ruleType" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+	
+	<div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Desc" [(ngModel)]="data.desc" name="desc" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="EffortType" [(ngModel)]="data.effortType" name="effortType" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RuleParserType" [(ngModel)]="data.ruleParserType" name="ruleParserType" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Enabled" [(ngModel)]="data.enabled" name="enabled" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+	
+	<div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="FileList" [(ngModel)]="data.fileList" name="fileList" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RegexPreCondition" [(ngModel)]="data.regexPreCondition" name="regexPreCondition" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RegexList" [(ngModel)]="data.regexList" name="regexList" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+	
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

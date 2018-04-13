@@ -1,0 +1,126 @@
+
+<div class="container-fluid mat-elevation-z8">
+
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filter rules">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- ID Column -->
+    <!-- <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+    </ng-container>
+	
+	<ng-container matColumnDef="ruleCategory">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>RuleCategory</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ruleCategory}}</mat-cell>
+    </ng-container> -->
+
+    	
+	<ng-container matColumnDef="language">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Language</mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.language}}</mat-cell>
+  </ng-container>
+
+	<ng-container matColumnDef="group">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Group</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.group}}</mat-cell>
+    </ng-container>
+	
+	<ng-container matColumnDef="subGroup">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>SubGroup</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.subGroup}}</mat-cell>
+    </ng-container>
+	
+	<ng-container matColumnDef="ruleType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rule Type</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ruleType}}</mat-cell>
+    </ng-container>
+	
+	<ng-container matColumnDef="desc">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Desc</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.desc}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="effortType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Effort Type</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.effortType}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ruleParserType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rule Parser Type</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ruleParserType}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="enabled">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Enabled</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.enabled}}</mat-cell>
+    </ng-container>
+	
+	<ng-container matColumnDef="fileList">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>File List</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fileList}}</mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="regexPreCondition">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Regex PreCondition</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.regexPreCondition}}</mat-cell>
+    </ng-container>
+      
+    <ng-container matColumnDef="regexList">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Regex List</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.regexList}}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="subRulesInfoList">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>SubRules</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+      <ul>
+        <li *ngFor="let subRule of row.subRulesInfoList">
+          {{ subRule.file }}
+        </li>
+      </ul>
+    </mat-cell>
+    </ng-container>
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="white" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button color="white" (click)="startEdit(i, row.id, row.ruleCategory, row.language, row.group, row.subGroup, row.ruleType, row.desc, row.effortType, row.ruleParserType, row.enabled, row.fileList,row.regexPreCondition, row.regexList)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+<!-- 
+        <button mat-icon-button color="accent" (click)="deleteItem(i, row.id, row.regexList)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button> -->
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+    No results
+  </div>
+
+  <mat-paginator #paginator
+                 [length]="dataSource.filteredData.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

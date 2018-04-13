@@ -1,0 +1,148 @@
+<div class="container">
+  <!-- <h3 mat-dialog-title>Issue id: {{data.id}}</h3> -->
+<h3 mat-dialog-title>Edit Master : {{data.id}}
+
+</h3>
+
+<form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <!-- <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.id" name="id" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div> -->
+
+    <!--Textarea for demo purposes-->
+    
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+   	
+	<!-- <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="RuleCategory" [(ngModel)]="data.ruleCategory" name="ruleCategory" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div> -->
+
+    	<!-- <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Language" [(ngModel)]="data.language" name="language" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div>
+    
+  -->
+  <div class="form">
+      <mat-form-field>
+        <mat-select placeholder="Language" [(ngModel)]="data.language" name="language" maxlength="100"    required>
+          <mat-option *ngFor="let language of languages" [value]="language.value">
+            {{language.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form" >
+        <mat-form-field>
+            <!-- (change)=""  -->
+          <input matInput placeholder="Group"   autocomplete="anyrandomstring"  (keyup)="revert(data.group)" type="text" [(ngModel)]="data.group" name="group" maxlength="100" required>
+          <div *ngIf="hidegroup">
+              <mat-option *ngFor="let group of groupData| filtergroup:data.group"  [value]="group"  (keyup.enter)="assignToGroupInput(group)" (click)="assignToGroupInput(group)">
+                  {{group}} 
+              </mat-option>
+              </div>
+        </mat-form-field>
+      </div>
+  
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput placeholder="SubGroup"  autocomplete="anyrandomstring" (focus)="focusout(data.group)" (keyup)="enableSubGroup(data.group,data.subGroup)" type="text" [(ngModel)]="data.subGroup" name="subGroup" maxlength="100" required>
+        </mat-form-field>
+      </div>
+      <mat-error  *ngIf="subGroupError">Subgroup  already exists for {{data.group}}</mat-error>
+      
+	<div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control"  autocomplete="anyrandomstring" placeholder="Desc" [(ngModel)]="data.desc" name="desc" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/100</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control"  autocomplete="anyrandomstring" placeholder="effortOneTime" [(ngModel)]="data.effortOneTime" name="effortOneTime" maxlength="3" min="0" type="number" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control"  autocomplete="anyrandomstring" placeholder="effortPerMatch" [(ngModel)]="data.effortPerMatch" name="effortPerMatch" maxlength="3" min="0" type="number"  required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control"  autocomplete="anyrandomstring" placeholder="effortPerFileSize" [(ngModel)]="data.effortPerFileSize" name="effortPerFileSize" maxlength="3" min="0" type="number"  required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+          <mat-form-field>
+            <mat-select placeholder="Severity" [(ngModel)]="data.severity" name="severity" maxlength="100"  required>
+              <mat-option *ngFor="let severity of severityList" [value]="severity.value">
+                {{severity.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+    <div class="form">
+        <mat-form-field>
+          <mat-select placeholder="Migration Recommendation 4R" [(ngModel)]="data.migrationRecommendation4R" name="migrationRecommendation4R" maxlength="100"    required>
+            <mat-option *ngFor="let migrationRecommendation of migrationRecommendations" [value]="migrationRecommendation.value">
+              {{migrationRecommendation.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="recommendation" [(ngModel)]="data.recommendation" name="recommendation" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/25</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Enabled" [(ngModel)]="data.enabled" name="enabled" maxlength="100" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+      </mat-form-field>
+    </div> -->
+
+    <div class="form">
+        <mat-form-field>
+          <mat-select placeholder="Enabled" [(ngModel)]="data.enabled" name="enabled" maxlength="100"    required>
+            <mat-option *ngFor="let state of enabled" [value]="state.value">
+              {{state.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    
+	
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]='!formControl.valid || subGroupError' [mat-dialog-close]="1" (click)="stopEdit()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

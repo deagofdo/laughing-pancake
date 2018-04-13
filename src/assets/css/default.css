@@ -1,0 +1,36 @@
+.trans-bg{
+      background-color:transparent !important;
+	  background-image: url(../img/bg.png);
+      border-color:transparent;
+      box-shadow:none;   
+}
+
+.background{
+     background-image: url(../img/bg.png);
+	 background-color:white;
+}
+
+.tab-bg
+{
+background-color:white;
+}
+
+.bg-button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+button:focus {
+    outline: 0 !important;
+}
+
+font-home{
+color:white;
+}
+
+padding: 4% !important;
+}
