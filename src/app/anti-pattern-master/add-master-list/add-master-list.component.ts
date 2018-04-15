@@ -4,6 +4,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { antiPatternMasterList } from '../../models/antiPatternMasterList';
 import { MasterListService } from '../../services/master-list.service';
+import { log } from 'util';
 
 
 @Component({
@@ -51,7 +52,7 @@ migrationRecommendations=[
   {value: 'Rehost', viewValue: 'Rehost'},
   {value: 'Replatform', viewValue: 'Replatform'},
   {value: 'Refactor', viewValue: 'Refactor'},
-  {value: 'Rebuild', viewValue: 'Rebuild'},  
+  {value: 'Rebuild', viewValue: 'Rebuild'},
 ];
 
 getErrorMessage() {
@@ -70,7 +71,7 @@ this.dialogRef.close();
 
 public confirmAdd(): void {
   console.log(this.data+"***sendtosrvice");
-  
+
 this.dataService.addItem(this.data);
 }
 
@@ -78,25 +79,30 @@ enableSubGroup(group:string,subGroup:string){
 
   console.log(group+"****entered group");
 
-  
+
   this.subGroupData=this.dataService.getSubGroupList(group);
+  if(this.subGroupData===undefined){
+
+    this.data.group = group;
+this.subGroupError=false;
+  }else{
     console.log(this.subGroupData);
     const check = this.subGroupData.filter(item => (item==subGroup) );
     console.log(this.subGroupData.filter(item => (item==subGroup) ));
-    
+
     if( check.length>0){
-     
+
      console.log("inside if");
      this.subGroupError=true;
      console.log(this.subGroupError+" ***Error");
-     
+
     }
     else{
       this.subGroupError=false;
     }
-    
-  }
 
+  }
+}
 
 ngOnInit()
 {
@@ -109,13 +115,14 @@ getSubgroupList():void{
   this.enable=false;
   console.log("print group");
   console.log(this.data.group);
- 
+
 }
 focusout(group){
   this.hidegroup=false;
   console.log("change func"+group);
   this.subGroupData =this.dataService.getSubGroupList(this.data.group);
   this.data.group = group;
+
 
 }
 
@@ -126,7 +133,7 @@ assignToGroupInput(group){
     this.enableSubGroup(group,this.data.subGroup);
     this.data.group = group;
     this.hidegroup=false;
-    this.enable=false 
+    this.enable=false
   }
   else{
   this.subGroupData =this.dataService.getSubGroupList(this.data.group);
@@ -137,7 +144,7 @@ assignToGroupInput(group){
 }
 revert(group){
   console.log(group+"groujp val");
-  
+
   if(group==''){
     console.log("inside revert if");
     console.log(this.hidegroup);
@@ -145,16 +152,22 @@ revert(group){
     this.subGroupError=false;
   }
   else{
-    console.log("inside else");
-    
+    console.log(this.data.subGroup+"subgroup val");
+if(this.data.subGroup!==undefined&&this.data.subGroup.length>0){
+  console.log("else if check")
+  this.hidegroup=true;
+  this.enableSubGroup(group,this.data.subGroup);
+}else{
     this.hidegroup=true;
     this.enable=true;
     this.data.group=group;
     this.subGroupError=false;
-  }
-  
-  
 }
+  }
+
+
+}
+
 arrowkeyLocation = 0;
 
 moveUporDown(event: KeyboardEvent) {

@@ -11,9 +11,9 @@
     </div> -->
 
     <!--Textarea for demo purposes-->
-    
+
     <!--Contains mat-hint for characters count and has maxLengt set-->
-   	
+
 	<!-- <div class="form">
       <mat-form-field color="accent">
         <input matInput #inputstate class="form-control" placeholder="RuleCategory" [(ngModel)]="data.ruleCategory" name="ruleCategory" maxlength="100" required >
@@ -29,7 +29,7 @@
         <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
       </mat-form-field>
     </div>
-    
+
   -->
   <div class="form">
       <mat-form-field>
@@ -47,19 +47,19 @@
           <input matInput placeholder="Group"   autocomplete="anyrandomstring"  (keyup)="revert(data.group)" type="text" [(ngModel)]="data.group" name="group" maxlength="100" required>
           <div *ngIf="hidegroup">
               <mat-option *ngFor="let group of groupData| filtergroup:data.group"  [value]="group"  (keyup.enter)="assignToGroupInput(group)" (click)="assignToGroupInput(group)">
-                  {{group}} 
+                  {{group}}
               </mat-option>
               </div>
         </mat-form-field>
       </div>
-  
+
       <div class="form">
         <mat-form-field color="accent">
           <input matInput placeholder="SubGroup"  autocomplete="anyrandomstring" (focus)="focusout(data.group)" (keyup)="enableSubGroup(data.group,data.subGroup)" type="text" [(ngModel)]="data.subGroup" name="subGroup" maxlength="100" required>
         </mat-form-field>
       </div>
       <mat-error  *ngIf="subGroupError">Subgroup  already exists for {{data.group}}</mat-error>
-      
+
 	<div class="form">
       <mat-form-field color="accent">
         <input matInput #inputstate class="form-control"  autocomplete="anyrandomstring" placeholder="Desc" [(ngModel)]="data.desc" name="desc" maxlength="100" required >
@@ -135,8 +135,8 @@
           </mat-select>
         </mat-form-field>
       </div>
-    
-	
+
+
     <div mat-dialog-actions>
       <button mat-button [type]="submit" [disabled]='!formControl.valid || subGroupError' [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
       <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
